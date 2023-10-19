@@ -35,6 +35,16 @@ class StudentController extends Controller
         return view('student.create');
     }
     function store(Request $req){
+        $req->validate([
+            'name' => 'required|max:50',
+            'email' => 'required|email|unique:students,email',
+            'roll' => 'required|numeric|unique:students,roll|min:10000000',
+            'reg' => 'required|numeric|unique:students,reg|min:1000000000000000',
+            'number' => 'required|numeric|unique:students,number|digits:11',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048',
+            'address' => 'required',
+            'description' => 'required',
+        ]);
         $student = new Student();
         if ($req->hasFile('image')) {
             $image = $req->file('image');
@@ -60,6 +70,16 @@ class StudentController extends Controller
         // return view('student.edit',['student'=>$student]);
     }
     function update(Request $req, $id){
+        $req->validate([
+            "name" => "required|max:50",
+            "email" => "required|email|unique:students,email,$id",
+            "roll" => "required|numeric|unique:students,roll,$id|min:10000000",
+            "reg" => "required|numeric|unique:students,reg,$id|min:1000000000000000",
+            "number" => "required|numeric|unique:students,number,$id|digits:11",
+            "image" => "nullable|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048",
+            "address" => "required",
+            "description" => "required",
+        ]);
         $student = Student::findOrFail($id);
         if ($req->hasFile('image')) {
             $image = $req->file('image');

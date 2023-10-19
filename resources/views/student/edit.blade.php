@@ -23,34 +23,42 @@
                             <div class="form-group col-md-6 mb-3">
                                 <label>Name</label>
                                 <input type="text" value="{{$student->name}}" name="name" class="form-control" placeholder="Enter your name:">
+                                @include('feedback.error',['field'=>'name'])
                             </div> 
                             <div class="form-group col-md-6 mb-3">
                                 <label>Email</label>
                                 <input type="email" value="{{$student->email}}" name="email" class="form-control" placeholder="Enter your email:">
+                                @include('feedback.error',['field'=>'email'])
                             </div>
                             <div class="form-group col-md-6 mb-3">
                                 <label>Roll</label>
                                 <input type="number" value="{{$student->roll}}" name="roll" class="form-control" placeholder="Enter your roll no:">
+                                @include('feedback.error',['field'=>'roll'])
                             </div> 
                             <div class="form-group col-md-6 mb-3">
                                 <label>Registration</label>
                                 <input type="number" value="{{$student->reg}}" name="reg" class="form-control" placeholder="Enter your registration no:">
+                                @include('feedback.error',['field'=>'reg'])
                             </div>
                             <div class="form-group col-md-6 mb-3">
                                 <label>Phone</label>
                                 <input type="number" value="{{$student->number}}" name="number" class="form-control" placeholder="Enter your phone number:">
+                                @include('feedback.error',['field'=>'number'])
                             </div> 
                             <div class="form-group col-md-6 mb-3">
                                 <label>Upload Image</label>
                                 <input type="file" accept="image/*" name="image" class="form-control">
+                                @include('feedback.error',['field'=>'image'])
                             </div>
                             <div class="form-group col-md-12 mb-3">
                                 <label>Address</label>
                                 <textarea name="address" class="form-control" cols="30" rows="5" placeholder="Enter your address:">{{$student->address}}</textarea>
+                                @include('feedback.error',['field'=>'address'])
                             </div>
                             <div class="form-group col-md-12 mb-3">
                                 <label>Description</label>
                                 <textarea name="description" class="form-control" cols="30" rows="5" placeholder="Enter your description:">{{$student->description}}</textarea>
+                                @include('feedback.error',['field'=>'description'])
                             </div>
                             <div class="col-md-12">
                                 <input type="submit" value="Update" class="btn btn-outline-info w-100">

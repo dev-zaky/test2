@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->integer('roll')->unique();
-            $table->integer('reg')->unique();
+            $table->bigInteger('roll')->unique();
+            $table->bigInteger('reg')->unique();
             $table->string('email')->unique();
-            $table->integer('number')->unique();
+            $table->string('number')->unique();
             $table->text('address');
             $table->longText('description');
             $table->timestamps();
