@@ -11,6 +11,7 @@
   <div class="container py-5">
     <div class="row">
         <div class="col-md-12 mx-auto">
+            @include('feedback.alert')
             <div class="card">
                 <div class="card-header">
                     <h2 class="float-start">Student List</h2>

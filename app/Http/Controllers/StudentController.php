@@ -60,7 +60,8 @@ class StudentController extends Controller
         $student->address = $req->address;
         $student->description = $req->description;
         $student->save();
-        return redirect()->route('student.index');
+        return redirect()->route('student.index')->withStatus('Student Created Successfully');
+
     }
     function edit($id){
         $s['student'] = Student::findOrFail($id);
@@ -96,7 +97,7 @@ class StudentController extends Controller
         $student->address = $req->address;
         $student->description = $req->description;
         $student->update();
-        return redirect()->route('student.index');
+        return redirect()->route('student.index')->withStatus('Student Updated Successfully');
     }
     function delete($id){
         $student = Student::findOrFail($id);
