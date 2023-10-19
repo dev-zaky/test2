@@ -14,8 +14,16 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home/{id}', [StudentController::class,'home'])->name('student.home');
-Route::get('/create', [StudentController::class,'create'])->name('student.create');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/home/{id}', [StudentController::class,'home'])->name('student.home');
+// Route::get('/create', [StudentController::class,'create'])->name('student.create');
+
+Route::get('/',[StudentController::class,'index'])->name('student.index');
+Route::get('/student/create',[StudentController::class,'create'])->name('student.create');
+Route::post('/student/store',[StudentController::class,'store'])->name('student.store');
+Route::get('/student/edit/{id}',[StudentController::class,'edit'])->name('student.edit');
+Route::post('/student/update/{id}',[StudentController::class,'update'])->name('student.update');
+Route::get('/student/delete/{id}',[StudentController::class,'delete'])->name('student.delete');
+
