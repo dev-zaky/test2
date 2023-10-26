@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('reg')->unique();
             $table->string('email')->unique();
             $table->string('number')->unique();
+            $table->boolean('status')->default(1);
             $table->text('address');
             $table->longText('description');
             $table->timestamps();

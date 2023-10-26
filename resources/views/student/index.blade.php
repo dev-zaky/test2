@@ -25,8 +25,9 @@
                             <th>Image</th>
                             <th>Roll</th>
                             <th>Reg</th>
-                            <th>Address</th> 
-                            <th>Description</th>
+                            <!-- <th>Address</th> 
+                            <th>Description</th> -->
+                            <th>Status</th> 
                             <th>Created At</th> 
                             <th>Updated At</th> 
                             <th>Action</th> 
@@ -40,14 +41,24 @@
                                 </td>
                                 <td>{{$student->roll}}</td>
                                 <td>{{$student->reg}}</td>
-                                <td>{{Str::limit($student->address, 20,'...')}}</td> 
-                                <td>{{Str::limit($student->description, 20,'...')}}</td> 
+                                <td>
+                                    <span class="badge {{($student->status ==1) ? 'bg-success' : 'bg-warning'}}">
+                                        {{($student->status ==1) ? 'Active' : 'Deactive'}}
+                                    </span>
+                                    <!-- <a href="{{route('student.status',$student->id)}}" class="btn btn-sm {{($student->status == 1) ? 'btn-warning' : 'btn-success'}}">{{($student->status == 1) ? 'Deactive' : 'Active'}}</a> -->
+                                </td>
+                                <!-- <td>{{Str::limit($student->address, 20,'...')}}</td> 
+                                <td>{{Str::limit($student->description, 20,'...')}}</td>  -->
                                 <td>{{date('d-M-Y', strtotime($student->created_at))}}</td> 
                                 <td>{{ !empty($student->updated_at) && $student->updated_at != $student->created_at ? date('d-M-Y', strtotime($student->updated_at)) : 'N/A' }}</td> 
                                 <td>
                                     <div class="form-group">
+                                    <div class="btn-group" role="group">
+                                        <a href="{{route('student.view',$student->id)}}" class="btn btn-outline-primary btn-sm">View</a>
                                         <a href="{{route('student.edit',$student->id)}}" class="btn btn-outline-info btn-sm">Edit</a>
+                                        <a href="{{route('student.status',$student->id)}}" class="btn btn-sm {{($student->status == 1) ? 'btn-outline-warning' : 'btn-outline-success'}}">{{($student->status == 1) ? 'Deactive' : 'Active'}}</a>
                                         <a href="{{route('student.delete',$student->id)}}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                    </div>
                                     </div>
                                 </td>
                             </tr>

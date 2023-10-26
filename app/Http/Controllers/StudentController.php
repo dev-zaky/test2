@@ -39,7 +39,7 @@ class StudentController extends Controller
             'name' => 'required|max:50',
             'email' => 'required|email|unique:students,email',
             'roll' => 'required|numeric|unique:students,roll|min:10000000',
-            'reg' => 'required|numeric|unique:students,reg|min:1000000000000000',
+            'reg' => 'required|numeric|unique:students,reg|min:10000000',
             'number' => 'required|numeric|unique:students,number|digits:11',
             'image' => 'required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048',
             'address' => 'required',
@@ -63,6 +63,10 @@ class StudentController extends Controller
         return redirect()->route('student.index')->withStatus('Student Created Successfully');
 
     }
+    function view($id){
+        $s['student'] = Student::findOrFail($id);
+        return view('student.view',$s);
+    }
     function edit($id){
         $s['student'] = Student::findOrFail($id);
         // $student = Student::findOrFail($id);
@@ -75,7 +79,7 @@ class StudentController extends Controller
             "name" => "required|max:50",
             "email" => "required|email|unique:students,email,$id",
             "roll" => "required|numeric|unique:students,roll,$id|min:10000000",
-            "reg" => "required|numeric|unique:students,reg,$id|min:1000000000000000",
+            "reg" => "required|numeric|unique:students,reg,$id|min:10000000",
             "number" => "required|numeric|unique:students,number,$id|digits:11",
             "image" => "nullable|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048",
             "address" => "required",
@@ -103,5 +107,15 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
         return redirect()->route('student.index');
+    }
+    function status($id){
+        $student = Student::findOrFail($id);
+        if($student->status == 1){
+            $student->status = 0;
+        }else{
+            $student->status = 1;
+        }
+        $student->save();
+        return redirect()->route('student.index')->withStatus('Student Status Change Successfully');
     }
 }
